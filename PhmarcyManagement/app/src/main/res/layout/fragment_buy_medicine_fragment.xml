@@ -35,7 +35,7 @@ tools:context=".ui.byelist.addmedicine.view.BuyMedicineFragment">
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/price_medicine"
     android:hint="Medicine Unit"
-    android:inputType="number"/>
+    android:inputType="number" />
 <Button
     android:id="@+id/createButton"
     android:layout_width="0dp"
