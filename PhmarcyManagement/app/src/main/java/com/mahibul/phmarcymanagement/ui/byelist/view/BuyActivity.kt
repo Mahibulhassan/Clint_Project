@@ -15,6 +15,7 @@ import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view.BuyMedicineFrag
 import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineFactory
 import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineViewModel
 import kotlinx.android.synthetic.main.activity_bye.*
+import kotlinx.android.synthetic.main.medicine_item_view.*
 
 class BuyActivity : AppCompatActivity(),DataChangeLIstner {
     private val model by lazy { BuyModelImp(applicationContext) }
@@ -32,6 +33,10 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bye)
         setTitle("Buy Details")
+
+        nameTextView.text="Product Name"
+        unitTextView.text="Units"
+        priceTextView.text="Price"
 
         initRecyclerView()
         viewModel.getStudentList()

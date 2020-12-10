@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.byelist.view.BuyActivity">
 
+    <include
+        layout="@layout/medicine_item_view"
+        android:id="@+id/layoutid"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/bye_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/bye_recyclerview"/>
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutid" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_add"
