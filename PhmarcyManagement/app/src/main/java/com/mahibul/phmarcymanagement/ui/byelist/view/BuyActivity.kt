@@ -1,7 +1,9 @@
 package com.mahibul.phmarcymanagement.ui.byelist.view
 
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -34,9 +36,12 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         setContentView(R.layout.activity_bye)
         setTitle("Buy Details")
 
+        //incluse layout things..........
         nameTextView.text="Product Name"
         unitTextView.text="Units"
         priceTextView.text="Price"
+        btnEdit.visibility = View.GONE
+        btnDelete.visibility= View.GONE
 
         initRecyclerView()
         viewModel.getStudentList()
@@ -74,3 +79,4 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
     }
 
 }
+

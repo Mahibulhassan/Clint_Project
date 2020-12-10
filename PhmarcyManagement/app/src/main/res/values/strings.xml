@@ -18,4 +18,7 @@
     <string name="cancel_button">CANCEL</string>
     <string name="create_button">CREATE</string>
     <string name="medicine_price">Medicine Price</string>
+
+    <string name="cross_image_content_description">Delete student from SQLite database</string>
+    <string name="edit_button_description">Edit Single student information</string>
 </resources>
