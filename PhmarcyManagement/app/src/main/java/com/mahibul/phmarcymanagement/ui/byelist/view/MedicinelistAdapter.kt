@@ -4,28 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mahibul.phmarcymanagement.R
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicine
+import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
 
-class MedicinelistAdapter(private val medicineList : MutableList<BuyMedicine>):RecyclerView.Adapter<ViewHolder>() {
+class MedicinelistAdapter(private val medicineDataList : MutableList<BuyMedicineData>):RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.medicine_item_view,parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val medicine = medicineList[position]
+        val medicine = medicineDataList[position]
         holder.nameTextView.text=medicine.name
         holder.priceTextView.text=medicine.price.toString()
         holder.unitTextView.text=medicine.unit.toString()
     }
 
     override fun getItemCount(): Int {
-        return medicineList.size
+        return medicineDataList.size
     }
 
-    fun replaceData(medicineList : MutableList<BuyMedicine>){
-        this.medicineList.clear()
-        this.medicineList.addAll(medicineList)
+    fun replaceData(medicineDataList : MutableList<BuyMedicineData>){
+        this.medicineDataList.clear()
+        this.medicineDataList.addAll(medicineDataList)
         notifyDataSetChanged()
     }
 }

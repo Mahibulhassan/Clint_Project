@@ -1,6 +1,5 @@
 package com.mahibul.phmarcymanagement.ui.byelist.view
 
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.constants.CREATE_medicine
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicine
+import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
 import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyModelImp
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view.BuyMedicineFragment
 import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineFactory
@@ -26,7 +25,7 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         ViewModelProvider(this,factory).get(BuyMedicineViewModel::class.java)
     }
 
-    private val MedicineList by lazy { mutableListOf<BuyMedicine>() }
+    private val MedicineList by lazy { mutableListOf<BuyMedicineData>() }
     private val medicineListAdapter by lazy {
         MedicinelistAdapter(MedicineList)
     }
@@ -36,13 +35,14 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         setContentView(R.layout.activity_bye)
         setTitle("Buy Details")
 
-        //incluse layout things..........
+        //include layout things..........
         nameTextView.text="Product Name"
         unitTextView.text="Units"
         priceTextView.text="Price"
         btnEdit.visibility = View.GONE
         btnDelete.visibility= View.GONE
 
+        //Init Recycler View
         initRecyclerView()
         viewModel.getStudentList()
         viewModel.MedicineListLiveData.observe(this,{

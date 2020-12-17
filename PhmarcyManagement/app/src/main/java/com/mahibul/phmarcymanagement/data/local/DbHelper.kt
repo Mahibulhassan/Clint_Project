@@ -9,7 +9,6 @@ object DbHelper {
 
     private lateinit var context: Context
 
-    // read this to know about `by lazy{ }`: https://stackoverflow.com/questions/36623177/kotlin-property-initialization-using-by-lazy-vs-lateinit
     private val dbHelper by lazy {
         object : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             override fun onCreate(db: SQLiteDatabase?) {

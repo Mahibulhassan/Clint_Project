@@ -13,18 +13,18 @@ import java.lang.Exception
 
 class BuyModelImp(private val context: Context) : BuyModel {
 
-    override fun insertMedicine(buyMedicine: BuyMedicine, callback: DataFetchCallback<BuyMedicine>) {
+    override fun insertMedicine(buyMedicineData: BuyMedicineData, callback: DataFetchCallback<BuyMedicineData>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.writableDatabase
 
         val contentvalues = ContentValues()
-        contentvalues.put(COLUMN_medicine_NAME, buyMedicine.name)
-        contentvalues.put(COLUMN_medicine_price, buyMedicine.price)
-        contentvalues.put(COLUMN_medicine_unit, buyMedicine.unit)
+        contentvalues.put(COLUMN_medicine_NAME, buyMedicineData.name)
+        contentvalues.put(COLUMN_medicine_price, buyMedicineData.price)
+        contentvalues.put(COLUMN_medicine_unit, buyMedicineData.unit)
         try {
             val id = database.insertOrThrow(TABLE_BUY_MEDICINE, null, contentvalues)
             if (id > 0) {
-                callback.onSuccess(buyMedicine)
+                callback.onSuccess(buyMedicineData)
             } else
                 callback.onError(Throwable("Insertion failed for unknown reason"))
         } catch (e: Exception) {
@@ -34,7 +34,7 @@ class BuyModelImp(private val context: Context) : BuyModel {
         }
     }
 
-    override fun getMedicineList(callback: DataFetchCallback<MutableList<BuyMedicine>>) {
+    override fun getMedicineList(callback: DataFetchCallback<MutableList<BuyMedicineData>>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.readableDatabase
 
@@ -43,14 +43,14 @@ class BuyModelImp(private val context: Context) : BuyModel {
             cursor = database.query(TABLE_BUY_MEDICINE,null,null,null,null,null,null,null)
 
             if(cursor.moveToFirst()==true){
-                val medicineList = mutableListOf<BuyMedicine>()
+                val medicineList = mutableListOf<BuyMedicineData>()
 
                 do{
                     val name = cursor.getString(cursor.getColumnIndex(COLUMN_medicine_NAME))
                     val price = cursor.getInt(cursor.getColumnIndex(COLUMN_medicine_price))
                     val unite = cursor.getInt(cursor.getColumnIndex(COLUMN_medicine_unit))
 
-                    medicineList.add(BuyMedicine(name,price,unite))
+                    medicineList.add(BuyMedicineData(name,price,unite))
                 }while (cursor.moveToNext())
 
                 callback.onSuccess(medicineList)

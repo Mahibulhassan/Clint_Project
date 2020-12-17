@@ -2,7 +2,6 @@ package com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicine
+import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
 import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyModelImp
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineFactory
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineViewModel
@@ -56,7 +55,7 @@ class BuyMedicineFragment : DialogFragment(){
                 return@setOnClickListener
             }
 
-            val buymedicine = BuyMedicine(name = name,price = price.toInt(),unit = unit.toInt())
+            val buymedicine = BuyMedicineData(name = name,price = price.toInt(),unit = unit.toInt())
 
             viewModel.addMedicine(buymedicine)
         }
@@ -78,7 +77,6 @@ class BuyMedicineFragment : DialogFragment(){
 
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
-
         dialog?.window?.setLayout(width, height)
     }
 
