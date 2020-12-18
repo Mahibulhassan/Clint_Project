@@ -10,8 +10,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="BUY_ID">BUY</string>
-    <string name="SELL_ID">SELL</string>
+    <string name="BUY_ID">Purchase Entry</string>
+    <string name="SELL_ID">Sales Entry</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="medicine_name">Medicine Name</string>
@@ -21,4 +21,8 @@
 
     <string name="cross_image_content_description">Delete student from SQLite database</string>
     <string name="edit_button_description">Edit Single student information</string>
+    <string name="price">Price</string>
+    <string name="name">Name</string>
+    <string name="units">Units</string>
+    <string name="Plus">+</string>
 </resources>

@@ -2,7 +2,7 @@ package com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyModel
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModel
 
 class AddMedicineFactory( val model : BuyModel):ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

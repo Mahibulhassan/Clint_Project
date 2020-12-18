@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.data.model.buy_medicine
+package com.mahibul.phmarcymanagement.data.reposotory.buy_medicine
 
 import android.content.ContentValues
 import android.content.Context

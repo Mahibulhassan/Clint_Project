@@ -1,24 +1,24 @@
 package com.mahibul.phmarcymanagement.ui.byelist.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.constants.CREATE_medicine
+import com.mahibul.phmarcymanagement.core.BaseActivity
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyModelImp
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view.BuyMedicineFragment
 import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineFactory
 import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineViewModel
 import kotlinx.android.synthetic.main.activity_bye.*
-import kotlinx.android.synthetic.main.medicine_item_view.*
+import kotlinx.android.synthetic.main.toolbar.*
 
-class BuyActivity : AppCompatActivity(),DataChangeLIstner {
+class BuyActivity : BaseActivity(),DataChangeLIstner {
     private val model by lazy { BuyModelImp(applicationContext) }
     private val viewModel by lazy {
         val factory = BuyMedicineFactory(model)
@@ -30,18 +30,22 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         MedicinelistAdapter(MedicineList)
     }
 
+    override fun setLayoutId(): Int {
+        return R.layout.activity_bye
+    }
+
+    override fun setToolbar(): Toolbar {
+        toolbar.title = "Sore List"
+        return toolbar
+    }
+
+    override val isHomeUpButtonEnable: Boolean
+        get() = true
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bye)
         setTitle("Buy Details")
-
-        //include layout things..........
-        nameTextView.text="Product Name"
-        unitTextView.text="Units"
-        priceTextView.text="Price"
-        btnEdit.visibility = View.GONE
-        btnDelete.visibility= View.GONE
-
         //Init Recycler View
         initRecyclerView()
         viewModel.getStudentList()
@@ -50,9 +54,8 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
         })
 
         viewModel.MedicineListFailourLiveData.observe(this,{
-            Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
+            ShowToast(it)
         })
-
         btn_add.setOnClickListener {
             showStudentCreationDialog()
         }
@@ -70,13 +73,12 @@ class BuyActivity : AppCompatActivity(),DataChangeLIstner {
     }
 
     override fun onDataSetChangeError(error: String) {
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show()
+        ShowToast(error)
     }
 
     private fun initRecyclerView() {
         bye_recyclerview.layoutManager =LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         bye_recyclerview.adapter= medicineListAdapter
     }
-
 }
 

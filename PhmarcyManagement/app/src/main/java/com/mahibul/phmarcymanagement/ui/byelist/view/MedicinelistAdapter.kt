@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mahibul.phmarcymanagement.R
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
 
 class MedicinelistAdapter(private val medicineDataList : MutableList<BuyMedicineData>):RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

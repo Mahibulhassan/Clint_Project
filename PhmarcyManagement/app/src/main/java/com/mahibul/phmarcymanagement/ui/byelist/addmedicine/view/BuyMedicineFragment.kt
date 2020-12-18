@@ -10,8 +10,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyMedicineData
-import com.mahibul.phmarcymanagement.data.model.buy_medicine.BuyModelImp
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
+import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineFactory
 import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineViewModel
 import kotlinx.android.synthetic.main.fragment_buy_medicine_fragment.*
