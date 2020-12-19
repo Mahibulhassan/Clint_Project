@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.byelist.view.BuyActivity">
+    tools:context=".ui.buylist.view.BuyActivity">
 
     <include
         app:layout_constraintTop_toTopOf="parent"

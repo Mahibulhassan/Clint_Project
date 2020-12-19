@@ -5,7 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:padding="8dp"
-tools:context=".ui.byelist.addmedicine.view.BuyMedicineFragment">
+tools:context=".ui.buylist.addmedicine.view.BuyMedicineFragment">
 
 <EditText
     android:id="@+id/medicine_name"

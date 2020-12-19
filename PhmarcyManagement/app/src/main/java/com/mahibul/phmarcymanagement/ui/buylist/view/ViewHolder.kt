@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.byelist.view
+package com.mahibul.phmarcymanagement.ui.buylist.view
 
 import android.view.View
 import android.widget.TextView

@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.byelist.viewmodel
+package com.mahibul.phmarcymanagement.ui.buylist.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

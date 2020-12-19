@@ -25,4 +25,6 @@
     <string name="name">Name</string>
     <string name="units">Units</string>
     <string name="Plus">+</string>
+    <string name="daily_sell_report">Daily Sell Report</string>
+    <string name="due_list">Due List</string>
 </resources>

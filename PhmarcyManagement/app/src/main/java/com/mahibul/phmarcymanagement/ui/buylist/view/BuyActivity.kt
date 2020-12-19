@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.byelist.view
+package com.mahibul.phmarcymanagement.ui.buylist.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,9 +12,9 @@ import com.mahibul.phmarcymanagement.core.BaseActivity
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
-import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view.BuyMedicineFragment
-import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineFactory
-import com.mahibul.phmarcymanagement.ui.byelist.viewmodel.BuyMedicineViewModel
+import com.mahibul.phmarcymanagement.ui.buylist.addmedicine.view.BuyMedicineFragment
+import com.mahibul.phmarcymanagement.ui.buylist.viewmodel.BuyMedicineFactory
+import com.mahibul.phmarcymanagement.ui.buylist.viewmodel.BuyMedicineViewModel
 import kotlinx.android.synthetic.main.activity_bye.*
 import kotlinx.android.synthetic.main.toolbar.*
 

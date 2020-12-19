@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.byelist.addmedicine.view
+package com.mahibul.phmarcymanagement.ui.buylist.addmedicine.view
 
 import android.content.Context
 import android.os.Bundle
@@ -12,8 +12,8 @@ import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
-import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineFactory
-import com.mahibul.phmarcymanagement.ui.byelist.addmedicine.viewmodel.AddMedicineViewModel
+import com.mahibul.phmarcymanagement.ui.buylist.addmedicine.viewmodel.AddMedicineFactory
+import com.mahibul.phmarcymanagement.ui.buylist.addmedicine.viewmodel.AddMedicineViewModel
 import kotlinx.android.synthetic.main.fragment_buy_medicine_fragment.*
 
 class BuyMedicineFragment : DialogFragment(){
