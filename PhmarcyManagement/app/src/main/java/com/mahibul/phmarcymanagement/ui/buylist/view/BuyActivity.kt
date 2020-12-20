@@ -2,10 +2,12 @@ package com.mahibul.phmarcymanagement.ui.buylist.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.constants.CREATE_medicine
 import com.mahibul.phmarcymanagement.core.BaseActivity
@@ -27,7 +29,16 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
 
     private val MedicineList by lazy { mutableListOf<BuyMedicineData>() }
     private val medicineListAdapter by lazy {
-        MedicinelistAdapter(MedicineList)
+        MedicinelistAdapter(MedicineList,object : MedicinelistAdapter.MedicineListClickListener{
+            override fun onEditButtonClicked(medicine_name: String) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDeleteButtonClicked(medicine_name: String) {
+                showStudentDeliteDialouge(medicine_name)
+            }
+
+        })
     }
 
     override fun setLayoutId(): Int {
@@ -48,7 +59,7 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
         setTitle("Buy Details")
         //Init Recycler View
         initRecyclerView()
-        viewModel.getStudentList()
+        viewModel.getMedicineList()
         viewModel.MedicineListLiveData.observe(this,{
             medicineListAdapter.replaceData(it)
         })
@@ -56,6 +67,14 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
         viewModel.MedicineListFailourLiveData.observe(this,{
             ShowToast(it)
         })
+
+        viewModel.MedicineDeletionSuccessLiveData.observe(this,{
+            viewModel.getMedicineList()
+        })
+        viewModel.MedicineDeletionFailedLiveData.observe(this,{
+            ShowToast(it)
+        })
+
         btn_add.setOnClickListener {
             showStudentCreationDialog()
         }
@@ -69,7 +88,7 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
     }
 
     override fun onDataChanged() {
-        viewModel.getStudentList()
+        viewModel.getMedicineList()
     }
 
     override fun onDataSetChangeError(error: String) {
@@ -79,6 +98,21 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
     private fun initRecyclerView() {
         bye_recyclerview.layoutManager =LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         bye_recyclerview.adapter= medicineListAdapter
+    }
+
+    fun showStudentDeliteDialouge(item : String) {
+
+        var dialog: AlertDialog? = null
+
+        dialog = MaterialAlertDialogBuilder(this)
+                .setMessage("Are You Sure to Delete ?")
+                .setPositiveButton("Yes") { _, _ ->
+                    viewModel.deleteMedicine(item)
+                }
+                .setNegativeButton("No") { _, _ ->
+                    dialog?.dismiss()
+                }
+                .show()
     }
 }
 
