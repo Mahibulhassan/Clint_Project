@@ -25,7 +25,7 @@ class MedicinelistAdapter(
             clicklistner.onDeleteButtonClicked(medicine.name)
         }
         holder.btnEdit.setOnClickListener {
-            clicklistner.onEditButtonClicked(medicine.name)
+            clicklistner.onEditButtonClicked(medicine.name,medicine.unit)
         }
     }
 
@@ -40,7 +40,7 @@ class MedicinelistAdapter(
     }
 
     interface MedicineListClickListener {
-        fun onEditButtonClicked(medicine_name: String)
+        fun onEditButtonClicked(medicine_name: String,medicine_units : Int)
         fun onDeleteButtonClicked(medicine_name: String)
     }
 }

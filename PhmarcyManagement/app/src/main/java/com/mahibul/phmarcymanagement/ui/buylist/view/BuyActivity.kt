@@ -11,16 +11,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.constants.CREATE_medicine
 import com.mahibul.phmarcymanagement.core.BaseActivity
+import com.mahibul.phmarcymanagement.data.SharePreference.AppPreference
+import com.mahibul.phmarcymanagement.data.SharePreference.AppPreferenceImp
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
 import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
 import com.mahibul.phmarcymanagement.ui.buylist.addmedicine.view.BuyMedicineFragment
+import com.mahibul.phmarcymanagement.ui.buylist.updatemedicine.view.EditFragment
 import com.mahibul.phmarcymanagement.ui.buylist.viewmodel.BuyMedicineFactory
 import com.mahibul.phmarcymanagement.ui.buylist.viewmodel.BuyMedicineViewModel
 import kotlinx.android.synthetic.main.activity_bye.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class BuyActivity : BaseActivity(),DataChangeLIstner {
+    private lateinit var appPreferance: AppPreference
     private val model by lazy { BuyModelImp(applicationContext) }
     private val viewModel by lazy {
         val factory = BuyMedicineFactory(model)
@@ -30,17 +34,16 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
     private val MedicineList by lazy { mutableListOf<BuyMedicineData>() }
     private val medicineListAdapter by lazy {
         MedicinelistAdapter(MedicineList,object : MedicinelistAdapter.MedicineListClickListener{
-            override fun onEditButtonClicked(medicine_name: String) {
-                TODO("Not yet implemented")
+            override fun onEditButtonClicked(medicine_name: String,medicine_unit : Int) {
+                showEditDialouge(medicine_name,medicine_unit)
             }
 
             override fun onDeleteButtonClicked(medicine_name: String) {
-                showStudentDeliteDialouge(medicine_name)
+                showMedicineDeliteDialouge(medicine_name)
             }
 
         })
     }
-
     override fun setLayoutId(): Int {
         return R.layout.activity_bye
     }
@@ -76,16 +79,27 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
         })
 
         btn_add.setOnClickListener {
-            showStudentCreationDialog()
+            showMedicineCreationDialog()
         }
     }
+    private fun showEditDialouge(medicineName: String, medicineunit: Int) {
+        //Sharepreference save data name and price
+        appPreferance = AppPreferenceImp(this)
+        appPreferance.setName(AppPreference.Name,medicineName)
+        appPreferance.setUnits(AppPreference.Units,medicineunit)
 
-    private fun showStudentCreationDialog() {
+        val dialogFragment = EditFragment()
+        dialogFragment.setStyle(DialogFragment.STYLE_NORMAL,R.style.CustomDialog)
+        dialogFragment.show(supportFragmentManager, CREATE_medicine)
+    }
 
+
+    private fun showMedicineCreationDialog() {
         val dialogFragment = BuyMedicineFragment()
         dialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog)
         dialogFragment.show(supportFragmentManager, CREATE_medicine)
     }
+
 
     override fun onDataChanged() {
         viewModel.getMedicineList()
@@ -100,7 +114,7 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
         bye_recyclerview.adapter= medicineListAdapter
     }
 
-    fun showStudentDeliteDialouge(item : String) {
+    fun showMedicineDeliteDialouge(item : String) {
 
         var dialog: AlertDialog? = null
 
