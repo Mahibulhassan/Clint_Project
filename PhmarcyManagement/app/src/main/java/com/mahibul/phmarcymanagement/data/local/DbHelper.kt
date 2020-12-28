@@ -18,6 +18,8 @@ object DbHelper {
                  */
                 val s = "CREATE TABLE $TABLE_BUY_MEDICINE($COLUMN_medicine_NAME TEXT NOT NULL PRIMARY KEY UNIQUE, $COLUMN_medicine_price INTEGER NOT NULL, $COLUMN_medicine_unit INTEGER NOT NULL)"
                 db?.execSQL(s)
+                val due = "CREATE TABLE $TABLE_DUE_Customer($Column_customer_name TEXT NOT NULL PRIMARY KEY UNIQUE, $Column_customer_price INTEGER NOT NULL)"
+                db?.execSQL(due)
                 /*     val CREATE_STUDENT_TABLE = ("CREATE TABLE " + TABLE_STUDENT + "("
                        + COLUMN_STUDENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                        + COLUMN_STUDENT_NAME + " TEXT NOT NULL, "
@@ -29,6 +31,7 @@ object DbHelper {
             override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
                 // Drop older table if existed
                 db?.execSQL("DROP TABLE IF EXISTS $TABLE_BUY_MEDICINE")
+                db?.execSQL("DROP TABLE IF EXISTS $TABLE_DUE_Customer")
                 // Create tables again
                 onCreate(db)
             }

@@ -20,8 +20,6 @@ class AddMedicineViewModel(private val model : BuyModel):ViewModel() {
             override fun onError(throwable: Throwable) {
                 MedicineCreateFailedLiveData.postValue(throwable.localizedMessage)
             }
-
         })
     }
-
 }

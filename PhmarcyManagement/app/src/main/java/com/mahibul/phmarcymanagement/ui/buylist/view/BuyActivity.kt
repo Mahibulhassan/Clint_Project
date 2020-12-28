@@ -41,7 +41,6 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
             override fun onDeleteButtonClicked(medicine_name: String) {
                 showMedicineDeliteDialouge(medicine_name)
             }
-
         })
     }
     override fun setLayoutId(): Int {
