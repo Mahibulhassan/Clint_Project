@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.reposotory.due_coustomer.DataCustomer
+import com.mahibul.phmarcymanagement.data.reposotory.due_coustomer.Customer
 import com.mahibul.phmarcymanagement.data.reposotory.due_coustomer.DueListModelImp
 import com.mahibul.phmarcymanagement.ui.DueLIst.addCustomer.viewmodel.AddCustomerFactory
 import com.mahibul.phmarcymanagement.ui.DueLIst.addCustomer.viewmodel.AddCustomerViewModel
@@ -30,7 +30,7 @@ class DueCustomerFragment : DialogFragment() {
         if(context is DataChangeLIstner){
             dataChangeListner= context
         }else{
-            throw ClassCastException("Caller class must implement StudentCrudListener interface")
+            throw ClassCastException("Caller class must implement DataChangeListener interface")
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class DueCustomerFragment : DialogFragment() {
                 Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val customer = DataCustomer(customer_name = name , customer_due = price.toInt())
+            val customer = Customer(customer_name = name , customer_due = price.toInt())
             viewModel.addCustomer(customer)
         }
         due_cancelButton.setOnClickListener {

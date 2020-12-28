@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mahibul.phmarcymanagement.R
-import com.mahibul.phmarcymanagement.data.reposotory.due_coustomer.DataCustomer
+import com.mahibul.phmarcymanagement.data.reposotory.due_coustomer.Customer
 
 class DueListAdapter(
-        private val customerList : MutableList<DataCustomer>,
-        private val clickListener : CustomerClickListner
+    private val customerList : MutableList<Customer>,
+    private val clickListener : CustomerClickListner
 ) : RecyclerView.Adapter<DueListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DueListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.due_item_view,parent,false)
@@ -33,7 +33,7 @@ class DueListAdapter(
         return customerList.size
     }
 
-    fun replaceData(customerList : MutableList<DataCustomer>){
+    fun replaceData(customerList : MutableList<Customer>){
         this.customerList.clear()
         this.customerList.addAll(customerList)
         notifyDataSetChanged()

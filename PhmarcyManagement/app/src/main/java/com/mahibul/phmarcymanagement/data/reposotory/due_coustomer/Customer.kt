@@ -1,6 +1,6 @@
 package com.mahibul.phmarcymanagement.data.reposotory.due_coustomer
 
-data class DataCustomer(
+data class Customer(
         val customer_name : String,
         val customer_due : Int
 )

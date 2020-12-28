@@ -10,7 +10,7 @@ import java.lang.Exception
 
 class DueListModelImp(private val context: Context) : DueListModel {
 
-    override fun createDueCustomer(customerList: DataCustomer, callback: DataFetchCallback<DataCustomer>) {
+    override fun createDueCustomer(customerList: Customer, callback: DataFetchCallback<Customer>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.writableDatabase
 
@@ -54,7 +54,7 @@ class DueListModelImp(private val context: Context) : DueListModel {
     }
 
 
-    override fun updateDueCustomer(customerList: DataCustomer, callback: DataFetchCallback<Int>) {
+    override fun updateDueCustomer(customerList: Customer, callback: DataFetchCallback<Int>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.writableDatabase
 
@@ -79,7 +79,7 @@ class DueListModelImp(private val context: Context) : DueListModel {
         }
     }
 
-    override fun getCustomerList(callback: DataFetchCallback<MutableList<DataCustomer>>) {
+    override fun getCustomerList(callback: DataFetchCallback<MutableList<Customer>>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.readableDatabase
 
@@ -88,11 +88,11 @@ class DueListModelImp(private val context: Context) : DueListModel {
             cursor = database.query(TABLE_DUE_Customer, null, null, null, null, null, null, null)
 
             if (cursor.moveToFirst() == true) {
-                val customerList = mutableListOf<DataCustomer>()
+                val customerList = mutableListOf<Customer>()
                 do {
                     val name = cursor.getString(cursor.getColumnIndex(Column_customer_name))
                     val price = cursor.getInt(cursor.getColumnIndex(Column_customer_price))
-                    customerList.add(DataCustomer(name, price))
+                    customerList.add(Customer(name, price))
                 } while (cursor.moveToNext())
 
                 callback.onSuccess(customerList)

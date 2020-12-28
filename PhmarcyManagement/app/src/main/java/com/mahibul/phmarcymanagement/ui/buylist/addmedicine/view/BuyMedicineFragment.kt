@@ -63,11 +63,11 @@ class BuyMedicineFragment : DialogFragment(){
             dismiss()
         }
 
-        viewModel.MedicineCreateLiveData.observe(this,{
+        viewModel.medicineCreateLiveData.observe(this,{
             dataChangeListner.onDataChanged()
             dismiss()
         })
-        viewModel.MedicineCreateFailedLiveData.observe(this,{
+        viewModel.medicineCreateFailedLiveData.observe(this,{
             dataChangeListner.onDataSetChangeError(it)
         })
     }
