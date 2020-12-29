@@ -30,7 +30,7 @@ class BuyMedicineFragment : DialogFragment(){
         if(context is DataChangeLIstner){
             dataChangeListner= context
         }else{
-            throw ClassCastException("Caller class must implement StudentCrudListener interface")
+            throw ClassCastException("Caller class must implement BuyCrudListener interface")
         }
     }
 
