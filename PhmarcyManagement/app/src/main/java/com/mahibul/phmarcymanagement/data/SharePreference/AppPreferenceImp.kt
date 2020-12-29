@@ -16,6 +16,15 @@ class AppPreferenceImp(context: Context) : AppPreference {
         return sharepreferace.getString(key,"")
     }
 
+    override fun setPrice(key: String, value: Int) {
+        preference.putInt(key,value)
+        preference.apply()
+    }
+
+    override fun getPrice(key: String): Int? {
+        return sharepreferace.getInt(key,0)
+    }
+
     override fun setUnits(key: String, value: Int) {
         preference.putInt(key,value)
         preference.apply()

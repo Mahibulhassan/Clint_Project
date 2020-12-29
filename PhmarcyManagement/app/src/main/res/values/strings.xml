@@ -27,4 +27,12 @@
     <string name="Plus">+</string>
     <string name="daily_sell_report">Daily Sell Report</string>
     <string name="due_list">Due List</string>
+    <string name="customar_name">Customar Name</string>
+    <string name="taka">Taka</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="due_price">Due Price</string>
+    <string name="due">DUE</string>
+    <string name="payment">Payment..</string>
+    <string name="paid">PAID</string>
+    <string name="update">Update</string>
 </resources>

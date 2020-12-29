@@ -104,7 +104,7 @@ class BuyModelImp(private val context: Context) : BuyModel {
                     arrayOf(id)
             )
 
-            if (deleteRowCount > 0) {
+            if (deleteRowCount >= 0) {
                 callback.onSuccess(deleteRowCount)
             } else {
                 callback.onError(Throwable("No data is deleted"))

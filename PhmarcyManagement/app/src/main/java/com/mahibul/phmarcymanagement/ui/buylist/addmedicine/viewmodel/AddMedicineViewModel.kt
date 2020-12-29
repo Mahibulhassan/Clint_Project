@@ -8,20 +8,18 @@ import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModel
 
 class AddMedicineViewModel(private val model : BuyModel):ViewModel() {
 
-    val MedicineCreateLiveData = MutableLiveData<BuyMedicineData>()
-    val MedicineCreateFailedLiveData = MutableLiveData<String>()
+    val medicineCreateLiveData = MutableLiveData<BuyMedicineData>()
+    val medicineCreateFailedLiveData = MutableLiveData<String>()
 
     fun addMedicine(medicineData : BuyMedicineData){
         model.insertMedicine(medicineData,object : DataFetchCallback<BuyMedicineData>{
             override fun onSuccess(data: BuyMedicineData) {
-                MedicineCreateLiveData.postValue(data)
+                medicineCreateLiveData.postValue(data)
             }
 
             override fun onError(throwable: Throwable) {
-                MedicineCreateFailedLiveData.postValue(throwable.localizedMessage)
+                medicineCreateFailedLiveData.postValue(throwable.localizedMessage)
             }
-
         })
     }
-
 }
