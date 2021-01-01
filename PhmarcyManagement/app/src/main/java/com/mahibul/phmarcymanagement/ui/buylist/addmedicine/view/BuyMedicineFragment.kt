@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.buylist.addmedicine.view
+   package com.mahibul.phmarcymanagement.ui.buylist.addmedicine.view
 
 import android.content.Context
 import android.os.Bundle

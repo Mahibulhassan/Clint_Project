@@ -8,18 +8,18 @@ import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModel
 
 class BuyMedicineViewModel(private val model : BuyModel): ViewModel() {
 
-    val MedicineListLiveData = MutableLiveData<MutableList<BuyMedicineData>>()
-    val MedicineListFailourLiveData = MutableLiveData<String>()
-    val MedicineDeletionSuccessLiveData = MutableLiveData<Int>()
-    val MedicineDeletionFailedLiveData = MutableLiveData<String>()
+    val medicineListLiveData = MutableLiveData<MutableList<BuyMedicineData>>()
+    val medicineListFailourLiveData = MutableLiveData<String>()
+    val medicineDeletionSuccessLiveData = MutableLiveData<Int>()
+    val medicineDeletionFailedLiveData = MutableLiveData<String>()
 
     fun getMedicineList(){
         model.getMedicineList(object : DataFetchCallback<MutableList<BuyMedicineData>>{
             override fun onSuccess(data: MutableList<BuyMedicineData>) {
-                MedicineListLiveData.postValue(data)
+                medicineListLiveData.postValue(data)
             }
             override fun onError(throwable: Throwable) {
-                MedicineListFailourLiveData.postValue(throwable.localizedMessage)
+                medicineListFailourLiveData.postValue(throwable.localizedMessage)
             }
 
         })
@@ -28,11 +28,11 @@ class BuyMedicineViewModel(private val model : BuyModel): ViewModel() {
     fun deleteMedicine(id : String){
         model.deleteItem(id,object : DataFetchCallback<Int>{
             override fun onSuccess(data: Int) {
-                MedicineDeletionSuccessLiveData.postValue(data)
+                medicineDeletionSuccessLiveData.postValue(data)
             }
 
             override fun onError(throwable: Throwable) {
-                MedicineDeletionFailedLiveData.postValue(throwable.localizedMessage)
+                medicineDeletionFailedLiveData.postValue(throwable.localizedMessage)
             }
         })
     }

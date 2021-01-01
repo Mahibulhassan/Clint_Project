@@ -62,18 +62,18 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
         //Init Recycler View
         initRecyclerView()
         viewModel.getMedicineList()
-        viewModel.MedicineListLiveData.observe(this,{
+        viewModel.medicineListLiveData.observe(this,{
             medicineListAdapter.replaceData(it)
         })
 
-        viewModel.MedicineListFailourLiveData.observe(this,{
+        viewModel.medicineListFailourLiveData.observe(this,{
             ShowToast(it)
         })
 
-        viewModel.MedicineDeletionSuccessLiveData.observe(this,{
+        viewModel.medicineDeletionSuccessLiveData.observe(this,{
             viewModel.getMedicineList()
         })
-        viewModel.MedicineDeletionFailedLiveData.observe(this,{
+        viewModel.medicineDeletionFailedLiveData.observe(this,{
             ShowToast(it)
         })
 
