@@ -9,7 +9,7 @@ import com.mahibul.phmarcymanagement.data.reposotory.sell_medicine.SellMedicine
 
 class SellAdapter(
     private val medicineDataList : MutableList<SellMedicine>,
-    private val clicklistner : SellAdapter.ListClickListener
+    private val clicklistner : ListClickListener
 ) : RecyclerView.Adapter<SellViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SellViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sell_item_view,parent,false)
@@ -22,6 +22,9 @@ class SellAdapter(
         holder.name_TextView.text=medicine.name
         holder.price_TextView.text=medicine.price.toString()
         holder.unit_TextView.text=medicine.unit.toString()
+        holder.itemView.setOnClickListener {
+            clicklistner.onMedicineClicked(medicine.name,medicine.unit,medicine.price)
+        }
 
     }
 
@@ -35,6 +38,6 @@ class SellAdapter(
     }
 
     interface ListClickListener {
-        fun onMedicineClicked(medicine_name: String,medicine_units : Int)
+        fun onMedicineClicked(medicine_name: String,medicine_units : Int,medcicine_price : Int)
     }
 }

@@ -1,4 +1,4 @@
-package com.mahibul.phmarcymanagement.ui.buylist.updatemedicine.view
+package com.mahibul.phmarcymanagement.ui.selllist.sellMedicine.view
 
 import android.content.Context
 import android.os.Bundle
@@ -12,21 +12,19 @@ import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.SharePreference.AppPreference
 import com.mahibul.phmarcymanagement.data.SharePreference.AppPreferenceImp
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
-import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyMedicineData
-import com.mahibul.phmarcymanagement.data.reposotory.buy_medicine.BuyModelImp
-import com.mahibul.phmarcymanagement.ui.buylist.updatemedicine.viewmodel.EditMedicineViewModel
-import com.mahibul.phmarcymanagement.ui.buylist.updatemedicine.viewmodel.EditModelFactory
-import kotlinx.android.synthetic.main.fragment_edit.*
+import com.mahibul.phmarcymanagement.data.reposotory.sell_medicine.SellListModelImp
+import com.mahibul.phmarcymanagement.data.reposotory.sell_medicine.SellMedicine
+import com.mahibul.phmarcymanagement.ui.selllist.sellMedicine.viewmodel.SellViewModel
+import com.mahibul.phmarcymanagement.ui.selllist.sellMedicine.viewmodel.SellViewModelFactory
+import kotlinx.android.synthetic.main.fragment_sell_medicine_update.*
 
-
-class EditFragment : DialogFragment() {
+class SellMedicineUpdate : DialogFragment() {
     private lateinit var appPreferance: AppPreference
-    private val model by lazy { BuyModelImp(requireContext().applicationContext) }
+    private val model by lazy { SellListModelImp(requireContext().applicationContext) }
     private val viewModel by lazy {
-         val factory = EditModelFactory(model)
-        ViewModelProvider(this,factory).get(EditMedicineViewModel::class.java)
+        val factory = SellViewModelFactory(model)
+        ViewModelProvider(this,factory).get(SellViewModel::class.java)
     }
-
     private lateinit var dataChangeListner : DataChangeLIstner
 
     override fun onAttach(context: Context) {
@@ -40,7 +38,7 @@ class EditFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        return inflater.inflate(R.layout.fragment_sell_medicine_update, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,33 +46,33 @@ class EditFragment : DialogFragment() {
         appPreferance = AppPreferenceImp(requireContext().applicationContext)
         val medicine_name = appPreferance.getName(AppPreference.Name)
         val medicine_units = appPreferance.getUnits(AppPreference.Units)
+        val medicine_price = appPreferance.getPrice(AppPreference.price)
         dialog?.setTitle(medicine_name)
-
-        updateButton.setOnClickListener {
-            val price = price_new_medicine.text.toString()
-            val unit = unit_new_medicine.text.toString()
+        cancel_button.setOnClickListener {
+            dismiss()
+        }
+        sell_button.setOnClickListener {
             val name = medicine_name
+            val price = medicine_price.toString()
+            val sell_units =units_medicine.text.toString()
 
-            if (name!!.isEmpty() || price.isEmpty() || unit.isEmpty()) {
+            if (name!!.isEmpty() || price!!.isEmpty() || sell_units.isEmpty()) {
                 Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val updateUnits = medicine_units?.plus(unit.toInt())
-            val updateMedicine = BuyMedicineData(name = name!!,price = price.toInt(),unit = updateUnits!!)
-            viewModel.updateMedicine(updateMedicine)
-        }
+            //Here Update medicine Units.........
 
-        cancelbButton.setOnClickListener {
-            dismiss()
+            val update_unites = medicine_units?.minus(sell_units.toInt())
+            val updateData = SellMedicine(name = name!!,price = price.toInt(),unit = update_unites!!)
+            viewModel.updateMedicine(updateData)
         }
-        viewModel.MedicineUpdateLiveData.observe(this,{
+        viewModel.medicineUpdateLiveData.observe(this,{
             dataChangeListner.onDataChanged()
             dismiss()
         })
-        viewModel.MedicineUpdateFailedLiveData.observe(this,{
+        viewModel.medicineUpdateFailedLiveData.observe(this,{
             dataChangeListner.onDataSetChangeError(it)
         })
-
     }
 
     override fun onStart() {
@@ -85,3 +83,4 @@ class EditFragment : DialogFragment() {
     }
 
 }
+
