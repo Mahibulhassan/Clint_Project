@@ -3,15 +3,36 @@ package com.mahibul.phmarcymanagement.data.reposotory.sell_medicine
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import com.mahibul.phmarcymanagement.constants.COLUMN_medicine_NAME
-import com.mahibul.phmarcymanagement.constants.COLUMN_medicine_price
-import com.mahibul.phmarcymanagement.constants.COLUMN_medicine_unit
-import com.mahibul.phmarcymanagement.constants.TABLE_BUY_MEDICINE
+import com.mahibul.phmarcymanagement.constants.*
 import com.mahibul.phmarcymanagement.core.DataFetchCallback
 import com.mahibul.phmarcymanagement.data.local.DbHelper
+import com.mahibul.phmarcymanagement.data.reposotory.sell_byDay.DailySell
+import com.orhanobut.logger.Logger
 import java.lang.Exception
 
 class SellListModelImp(private val context: Context) : SellListModel {
+
+    override fun insertTodaySell(dailySell: DailySell, callback: DataFetchCallback<DailySell>) {
+        val dbHelper = DbHelper.getInstance(context)
+        val database = dbHelper.writableDatabase
+
+        val contentvalues = ContentValues()
+        contentvalues.put(COLUMN_medicine_NAME,dailySell.name)
+        contentvalues.put(COLUMN_medicine_price,dailySell.price)
+        try {
+            val id = database.insertOrThrow(Table_sell, null, contentvalues)
+            if (id > 0) {
+                dailySell.id = id
+                callback.onSuccess(dailySell)
+            } else
+                callback.onError(Throwable("Insertion failed for unknown reason"))
+        } catch (e: Exception) {
+            callback.onError(e)
+        } finally {
+            database.close()
+        }
+    }
+
     override fun getMedicineList(callback: DataFetchCallback<MutableList<SellMedicine>>) {
         val dbHelper = DbHelper.getInstance(context)
         val database = dbHelper.readableDatabase

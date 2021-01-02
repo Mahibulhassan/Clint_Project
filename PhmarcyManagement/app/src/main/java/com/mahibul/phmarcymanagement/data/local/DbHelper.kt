@@ -20,6 +20,8 @@ object DbHelper {
                 db?.execSQL(s)
                 val due = "CREATE TABLE $TABLE_DUE_Customer($Column_customer_name TEXT NOT NULL PRIMARY KEY UNIQUE, $Column_customer_price INTEGER NOT NULL)"
                 db?.execSQL(due)
+                val sell_day ="CREATE TABLE $Table_sell($Colum_sell_id INTEGER PRIMARY KEY AUTOINCREMENT,$COLUMN_medicine_NAME TEXT NOT NULL, $COLUMN_medicine_price INTEGER NOT NULL)"
+                db?.execSQL(sell_day)
                 /*     val CREATE_STUDENT_TABLE = ("CREATE TABLE " + TABLE_STUDENT + "("
                        + COLUMN_STUDENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                        + COLUMN_STUDENT_NAME + " TEXT NOT NULL, "
@@ -32,6 +34,7 @@ object DbHelper {
                 // Drop older table if existed
                 db?.execSQL("DROP TABLE IF EXISTS $TABLE_BUY_MEDICINE")
                 db?.execSQL("DROP TABLE IF EXISTS $TABLE_DUE_Customer")
+                db?.execSQL("DROP TABLE IF EXISTS $Table_sell")
                 // Create tables again
                 onCreate(db)
             }

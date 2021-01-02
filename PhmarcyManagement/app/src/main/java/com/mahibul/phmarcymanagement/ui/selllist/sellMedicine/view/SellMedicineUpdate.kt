@@ -12,6 +12,7 @@ import com.mahibul.phmarcymanagement.R
 import com.mahibul.phmarcymanagement.data.SharePreference.AppPreference
 import com.mahibul.phmarcymanagement.data.SharePreference.AppPreferenceImp
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
+import com.mahibul.phmarcymanagement.data.reposotory.sell_byDay.DailySell
 import com.mahibul.phmarcymanagement.data.reposotory.sell_medicine.SellListModelImp
 import com.mahibul.phmarcymanagement.data.reposotory.sell_medicine.SellMedicine
 import com.mahibul.phmarcymanagement.ui.selllist.sellMedicine.viewmodel.SellViewModel
@@ -56,15 +57,20 @@ class SellMedicineUpdate : DialogFragment() {
             val price = medicine_price.toString()
             val sell_units =units_medicine.text.toString()
 
-            if (name!!.isEmpty() || price!!.isEmpty() || sell_units.isEmpty()) {
+            if (name!!.isEmpty() || price.isEmpty() || sell_units.isEmpty()) {
                 Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             //Here Update medicine Units.........
 
             val update_unites = medicine_units?.minus(sell_units.toInt())
-            val updateData = SellMedicine(name = name!!,price = price.toInt(),unit = update_unites!!)
+            val updateData = SellMedicine(name = name,price = price.toInt(),unit = update_unites!!)
             viewModel.updateMedicine(updateData)
+            //Here  daily sell Implement
+
+            val daily_price = sell_units.toInt()*price.toInt()
+            val daily_sell = DailySell(name = name,price = daily_price)
+            viewModel.createDailysell(daily_sell)
         }
         viewModel.medicineUpdateLiveData.observe(this,{
             dataChangeListner.onDataChanged()
@@ -72,6 +78,12 @@ class SellMedicineUpdate : DialogFragment() {
         })
         viewModel.medicineUpdateFailedLiveData.observe(this,{
             dataChangeListner.onDataSetChangeError(it)
+        })
+        viewModel.dailiSellCreateFailedLiveData.observe(this,{
+            dataChangeListner.onDataSetChangeError(it)
+        })
+        viewModel.dailySellCreateLiveData.observe(this,{
+            Toast.makeText(requireContext(),"Data Added",Toast.LENGTH_SHORT).show()
         })
     }
 

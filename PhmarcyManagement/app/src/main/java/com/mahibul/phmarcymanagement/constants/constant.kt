@@ -1,6 +1,8 @@
 package com.mahibul.phmarcymanagement.constants
 
 const val TABLE_BUY_MEDICINE = "Buy_Medicine"
+const val Table_sell ="Today_Sell"
+const val Colum_sell_id ="_id"
 const val TABLE_DUE_Customer = "Due_Customer"
 const val Column_customer_name = "Due_name"
 const val Column_customer_price ="due_price"
