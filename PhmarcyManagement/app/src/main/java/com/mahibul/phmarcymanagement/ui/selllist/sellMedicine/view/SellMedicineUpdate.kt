@@ -83,7 +83,7 @@ class SellMedicineUpdate : DialogFragment() {
             dataChangeListner.onDataSetChangeError(it)
         })
         viewModel.dailySellCreateLiveData.observe(this,{
-            Toast.makeText(requireContext(),"Data Added",Toast.LENGTH_SHORT).show()
+            //Testing for data save
         })
     }
 

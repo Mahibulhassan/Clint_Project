@@ -7,7 +7,6 @@ import com.mahibul.phmarcymanagement.constants.*
 import com.mahibul.phmarcymanagement.core.DataFetchCallback
 import com.mahibul.phmarcymanagement.data.local.DbHelper
 import com.mahibul.phmarcymanagement.data.reposotory.sell_byDay.DailySell
-import com.orhanobut.logger.Logger
 import java.lang.Exception
 
 class SellListModelImp(private val context: Context) : SellListModel {
