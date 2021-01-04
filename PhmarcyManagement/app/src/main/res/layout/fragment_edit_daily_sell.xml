@@ -1,52 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".ui.buylist.updatemedicine.view.EditFragment">
+    tools:context=".ui.sell_byDay.editselldata.view.EditDailySell">
 
     <EditText
-        android:id="@+id/price_new_medicine"
+        android:id="@+id/product_new_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/medicine_price"
-        android:inputType="number"
+        android:hint="Product Name "
+        android:inputType="text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/unit_new_medicine"
+        android:id="@+id/product_new_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Medicine Unit"
+        android:hint="Price"
         android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price_new_medicine" />
+        app:layout_constraintTop_toBottomOf="@+id/product_new_name" />
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/sell_updateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_500"
         android:text="Update"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/cancelbButton"
-        app:layout_constraintTop_toBottomOf="@+id/unit_new_medicine" />
+        app:layout_constraintRight_toLeftOf="@+id/sell_new_cancelbButton"
+        app:layout_constraintTop_toBottomOf="@+id/product_new_price" />
 
     <Button
-        android:id="@+id/cancelbButton"
+        android:id="@+id/sell_new_cancelbButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:backgroundTint="@color/purple_500"
         android:text="@string/cancel_button"
-        app:layout_constraintLeft_toRightOf="@+id/updateButton"
+        app:layout_constraintLeft_toRightOf="@+id/sell_updateButton"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unit_new_medicine" />
+        app:layout_constraintTop_toBottomOf="@+id/product_new_price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

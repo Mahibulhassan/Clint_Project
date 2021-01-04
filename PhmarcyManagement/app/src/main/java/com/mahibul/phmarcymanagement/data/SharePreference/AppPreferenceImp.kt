@@ -33,4 +33,13 @@ class AppPreferenceImp(context: Context) : AppPreference {
     override fun getUnits(key: String): Int? {
         return sharepreferace.getInt(key,0)
     }
+
+    override fun setId(key: String, value: Long) {
+        preference.putLong(key,value)
+        preference.apply()
+    }
+
+    override fun getId(key: String): Long? {
+        return sharepreferace.getLong(key,-1L)
+    }
 }

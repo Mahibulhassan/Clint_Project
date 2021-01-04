@@ -23,7 +23,7 @@ class DailySellAdapter (
             clicklistner.onDeleteButtonClicked(item.id)
         }
         holder.btnEdit.setOnClickListener {
-            clicklistner.onEditButtonClicked(item.id,item.name)
+            clicklistner.onEditButtonClicked(item.id)
         }
     }
 
@@ -38,7 +38,7 @@ class DailySellAdapter (
     }
 
     interface dailysellListClickListener {
-        fun onEditButtonClicked(id:Long,sell_item_name: String)
+        fun onEditButtonClicked(id:Long)
         fun onDeleteButtonClicked(id: Long)
     }
 }

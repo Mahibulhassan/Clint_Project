@@ -3,18 +3,23 @@ package com.mahibul.phmarcymanagement.ui.sell_byDay.view
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mahibul.phmarcymanagement.R
+import com.mahibul.phmarcymanagement.constants.CREATE_medicine
 import com.mahibul.phmarcymanagement.core.BaseActivity
 import com.mahibul.phmarcymanagement.data.SharePreference.AppPreference
+import com.mahibul.phmarcymanagement.data.SharePreference.AppPreferenceImp
 import com.mahibul.phmarcymanagement.data.local.DataChangeLIstner
 import com.mahibul.phmarcymanagement.data.reposotory.sell_byDay.DailySell
 import com.mahibul.phmarcymanagement.data.reposotory.sell_byDay.DailySellModelImp
+import com.mahibul.phmarcymanagement.ui.buylist.updatemedicine.view.EditFragment
+import com.mahibul.phmarcymanagement.ui.sell_byDay.addselldata.view.AddSellFragment
+import com.mahibul.phmarcymanagement.ui.sell_byDay.editselldata.view.EditDailySell
 import com.mahibul.phmarcymanagement.ui.sell_byDay.viewModel.DailySellViewFactory
 import com.mahibul.phmarcymanagement.ui.sell_byDay.viewModel.DailySellViewModel
-import kotlinx.android.synthetic.main.activity_bye.*
 import kotlinx.android.synthetic.main.activity_daily_sell.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -29,15 +34,24 @@ class DailySellActivity : BaseActivity(),DataChangeLIstner{
 
     private val dailyselladapter by lazy {
         DailySellAdapter(sellList,object : DailySellAdapter.dailysellListClickListener{
-            override fun onEditButtonClicked(id: Long, sell_item_name: String) {
-                TODO("Not yet implemented")
+            override fun onEditButtonClicked(id: Long) {
+                showEditDialuge(id)
             }
 
             override fun onDeleteButtonClicked(id: Long) {
                 showDeletionDialouge(id)
             }
-
         })
+    }
+
+    private fun showEditDialuge(id: Long) {
+        appPreferance = AppPreferenceImp(this)
+        appPreferance.setId(AppPreference.id,id)
+
+        val dialogFragment = EditDailySell()
+        dialogFragment.setStyle(DialogFragment.STYLE_NORMAL,R.style.CustomDialog)
+        dialogFragment.show(supportFragmentManager, CREATE_medicine)
+
     }
 
     override fun setLayoutId(): Int {
@@ -69,8 +83,14 @@ class DailySellActivity : BaseActivity(),DataChangeLIstner{
             ShowToast(it)
         })
         sell_btn_add.setOnClickListener {
-
+            showDailySell()
         }
+    }
+
+    fun showDailySell(){
+        val dialogFragment = AddSellFragment()
+        dialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog)
+        dialogFragment.show(supportFragmentManager, CREATE_medicine)
     }
 
     override fun onDataChanged() {

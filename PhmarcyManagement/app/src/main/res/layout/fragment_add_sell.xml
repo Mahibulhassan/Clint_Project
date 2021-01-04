@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".ui.buylist.updatemedicine.view.EditFragment">
+    tools:context=".ui.sell_byDay.addselldata.view.AddSellFragment">
 
     <EditText
-        android:id="@+id/price_new_medicine"
+        android:id="@+id/product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_name"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/product_price_medicine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/medicine_price"
         android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/unit_new_medicine"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Medicine Unit"
-        android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price_new_medicine" />
+        app:layout_constraintTop_toBottomOf="@+id/product_name"
+        android:autofillHints="" />
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/sell_createButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_500"
-        android:text="Update"
+        android:text="@string/create_button"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/cancelbButton"
-        app:layout_constraintTop_toBottomOf="@+id/unit_new_medicine" />
+        app:layout_constraintRight_toLeftOf="@+id/sell_cancelButton"
+        app:layout_constraintTop_toBottomOf="@+id/product_price_medicine" />
 
     <Button
-        android:id="@+id/cancelbButton"
+        android:id="@+id/sell_cancelButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:backgroundTint="@color/purple_500"
         android:text="@string/cancel_button"
-        app:layout_constraintLeft_toRightOf="@+id/updateButton"
+        app:layout_constraintLeft_toRightOf="@+id/sell_createButton"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unit_new_medicine" />
+        app:layout_constraintTop_toBottomOf="@+id/product_price_medicine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
