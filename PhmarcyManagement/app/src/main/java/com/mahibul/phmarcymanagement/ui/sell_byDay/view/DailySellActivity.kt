@@ -70,6 +70,7 @@ class DailySellActivity : BaseActivity(),DataChangeLIstner{
         super.onCreate(savedInstanceState)
         initRecyclerView()
         viewModel.getSellList()
+        total_price.text=0.toString()
         viewModel.dailysellListLiveData.observe(this,{
             dailyselladapter.replaceData(it)
         })
@@ -82,6 +83,18 @@ class DailySellActivity : BaseActivity(),DataChangeLIstner{
         viewModel.dailySellDeletionFailedLiveData.observe(this,{
             ShowToast(it)
         })
+        viewModel.tabbleAllDataDelationSuccess.observe(this,{
+            viewModel.getSellList()
+        })
+        viewModel.tabbleAllDataDelationFailor.observe(this,{
+            ShowToast(it)
+        })
+        viewModel.priceCalculateSuccess.observe(this,{
+            total_price.text=it.toString()
+        })
+        btn_tabbleclear.setOnClickListener {
+            viewModel.deleteAllItem()
+        }
         sell_btn_add.setOnClickListener {
             showDailySell()
         }

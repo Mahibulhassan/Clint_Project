@@ -37,4 +37,6 @@
     <string name="update">Update</string>
     <string name="sell">Sell</string>
     <string name="product_name">Product Name</string>
+    <string name="total_price">Total Price =</string>
+    <string name="clear">Clear</string>
 </resources>

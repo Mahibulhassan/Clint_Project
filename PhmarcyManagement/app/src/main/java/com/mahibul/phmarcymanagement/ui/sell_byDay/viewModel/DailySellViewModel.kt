@@ -12,17 +12,28 @@ class DailySellViewModel(private val model : DailySellModel): ViewModel() {
     val dailySellListFailourLiveData = MutableLiveData<String>()
     val dailySellDeletionSuccessLiveData = MutableLiveData<Int>()
     val dailySellDeletionFailedLiveData = MutableLiveData<String>()
+    val priceCalculateSuccess = MutableLiveData<Int>()
+    val tabbleAllDataDelationSuccess = MutableLiveData<Int>()
+    val tabbleAllDataDelationFailor = MutableLiveData<String>()
 
     fun getSellList(){
         model.getDailySellList(object : DataFetchCallback<MutableList<DailySell>> {
             override fun onSuccess(data: MutableList<DailySell>) {
+                calculateTotalPrice(data)
                 dailysellListLiveData.postValue(data)
             }
             override fun onError(throwable: Throwable) {
                 dailySellListFailourLiveData.postValue(throwable.localizedMessage)
             }
-
         })
+    }
+     private fun calculateTotalPrice(data: MutableList<DailySell>) {
+        var price = 0
+
+            for(i in 0..data.size-1) {
+                price = price + data[i].price
+            }
+         priceCalculateSuccess.postValue(price)
     }
 
     fun deleteItem(id : Long){
@@ -33,6 +44,18 @@ class DailySellViewModel(private val model : DailySellModel): ViewModel() {
 
             override fun onError(throwable: Throwable) {
                 dailySellDeletionFailedLiveData.postValue(throwable.localizedMessage)
+            }
+        })
+    }
+
+    fun deleteAllItem (){
+        model.deleteAllItem(object : DataFetchCallback<Int>{
+            override fun onSuccess(data: Int) {
+                tabbleAllDataDelationSuccess.postValue(data)
+            }
+
+            override fun onError(throwable: Throwable) {
+                tabbleAllDataDelationFailor.postValue(throwable.localizedMessage)
             }
         })
     }

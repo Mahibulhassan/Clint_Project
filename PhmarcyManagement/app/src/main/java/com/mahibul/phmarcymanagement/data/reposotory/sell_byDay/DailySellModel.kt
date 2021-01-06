@@ -7,4 +7,5 @@ interface DailySellModel {
     fun getDailySellList(callback: DataFetchCallback<MutableList<DailySell>>)
     fun getUpdateList(dailySell: DailySell, callback: DataFetchCallback<Int>)
     fun deleteItem(id : Long ,callback: DataFetchCallback<Int>)
+    fun deleteAllItem(callback: DataFetchCallback<Int>)
 }

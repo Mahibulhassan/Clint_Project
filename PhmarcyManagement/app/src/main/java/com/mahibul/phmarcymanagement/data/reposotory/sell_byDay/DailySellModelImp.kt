@@ -12,6 +12,7 @@ import com.mahibul.phmarcymanagement.data.local.DbHelper
 import java.lang.Exception
 
 class DailySellModelImp(private val context: Context)  : DailySellModel {
+    private var constant =1
 
     override fun insertDailysell(dailySell: DailySell, callback: DataFetchCallback<DailySell>) {
         val dbHelper = DbHelper.getInstance(context)
@@ -115,6 +116,27 @@ class DailySellModelImp(private val context: Context)  : DailySellModel {
 
             if (deleteRowCount > 0) {
                 callback.onSuccess(deleteRowCount)
+            } else {
+                callback.onError(Throwable("No data is deleted"))
+            }
+        } catch (e: Exception) {
+            callback.onError(e)
+        } finally {
+            database.close()
+        }
+    }
+
+    override fun deleteAllItem(callback: DataFetchCallback<Int>) {
+        val dbHelper = DbHelper.getInstance(context)
+        val database = dbHelper.writableDatabase
+        try {
+           database.execSQL("DELETE FROM Today_Sell")
+            constant++
+            if(constant>100){
+                constant=1
+            }
+            if ( constant> 0) {
+                callback.onSuccess(constant)
             } else {
                 callback.onError(Throwable("No data is deleted"))
             }
