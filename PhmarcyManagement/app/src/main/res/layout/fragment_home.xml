@@ -4,17 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
+    android:background="#B3CEE4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment" >
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/btn_buy"
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:backgroundTint="#6C78BA"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_sell"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_sell"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -31,13 +33,15 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:backgroundTint="#6C78BA"
-        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="0dp"
         android:id="@+id/btn_sell"
-        app:layout_constraintStart_toEndOf="@id/btn_buy"
-        app:layout_constraintTop_toTopOf="@id/btn_buy"
+        app:layout_constraintTop_toBottomOf="@id/btn_buy"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_id"
         tools:ignore="MissingConstraints">
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextAppearance.AppCompat.Body1"
@@ -50,16 +54,25 @@
             android:textSize="30sp" />
     </com.google.android.material.card.MaterialCardView>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".5"
+        />
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/btn_day_sell"
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:layout_marginTop="5dp"
         android:backgroundTint="#6C78BA"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Due_list"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_buy"
+        app:layout_constraintBottom_toTopOf="@id/btn_Due_list"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_id"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -75,13 +88,15 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:backgroundTint="#6C78BA"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/btn_Due_list"
-        app:layout_constraintStart_toEndOf="@id/btn_day_sell"
-        app:layout_constraintTop_toTopOf="@id/btn_day_sell"
+        app:layout_constraintTop_toBottomOf="@id/btn_day_sell"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints">
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextAppearance.AppCompat.Body1"
