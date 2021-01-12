@@ -86,15 +86,15 @@ class DueListModelImp(private val context: Context) : DueListModel {
         var cursor: Cursor? = null
         try {
             cursor = database.query(TABLE_DUE_Customer, null, null, null, null, null, null, null)
-
+            val customerList = mutableListOf<Customer>()
             if (cursor.moveToFirst() == true) {
-                val customerList = mutableListOf<Customer>()
                 do {
                     val name = cursor.getString(cursor.getColumnIndex(Column_customer_name))
                     val price = cursor.getInt(cursor.getColumnIndex(Column_customer_price))
                     customerList.add(Customer(name, price))
                 } while (cursor.moveToNext())
-
+                callback.onSuccess(customerList)
+            }else{
                 callback.onSuccess(customerList)
             }
         } catch (e: Exception) {

@@ -21,12 +21,11 @@ class DueListAdapter(
         holder.due_priceTextView.text = customer.customer_due.toString()
 
         holder.due_btnDelete.setOnClickListener {
-            clickListener.onDeleteButtonClicked(customer.customer_name)
+            clickListener.onDeleteButtonClicked(customer.customer_name!!)
         }
         holder.due_btnEdit.setOnClickListener {
-            clickListener.onEditButtonClicked(customer.customer_name,customer.customer_due)
+            clickListener.onEditButtonClicked(customer.customer_name!!, customer.customer_due!!)
         }
-
     }
 
     override fun getItemCount(): Int {

@@ -39,9 +39,8 @@ class SellListModelImp(private val context: Context) : SellListModel {
         var cursor: Cursor? = null
         try {
             cursor = database.query(TABLE_BUY_MEDICINE, null, null, null, null, null, null, null)
-
+            val medicineList = mutableListOf<SellMedicine>()
             if (cursor.moveToFirst() == true) {
-                val medicineList = mutableListOf<SellMedicine>()
 
                 do {
                     val name = cursor.getString(cursor.getColumnIndex(COLUMN_medicine_NAME))
@@ -51,6 +50,8 @@ class SellListModelImp(private val context: Context) : SellListModel {
                     medicineList.add(SellMedicine(name, price, unite))
                 } while (cursor.moveToNext())
 
+                callback.onSuccess(medicineList)
+            }else{
                 callback.onSuccess(medicineList)
             }
         } catch (e: Exception) {

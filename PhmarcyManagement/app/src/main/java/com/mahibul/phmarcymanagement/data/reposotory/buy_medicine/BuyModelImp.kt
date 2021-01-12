@@ -9,7 +9,6 @@ import com.mahibul.phmarcymanagement.constants.COLUMN_medicine_unit
 import com.mahibul.phmarcymanagement.constants.TABLE_BUY_MEDICINE
 import com.mahibul.phmarcymanagement.core.DataFetchCallback
 import com.mahibul.phmarcymanagement.data.local.DbHelper
-import com.orhanobut.logger.Logger
 import java.lang.Exception
 
 class BuyModelImp(private val context: Context) : BuyModel {
@@ -42,9 +41,8 @@ class BuyModelImp(private val context: Context) : BuyModel {
         var cursor: Cursor? = null
         try {
             cursor = database.query(TABLE_BUY_MEDICINE, null, null, null, null, null, null, null)
-
+            val medicineList = mutableListOf<BuyMedicineData>()
             if (cursor.moveToFirst() == true) {
-                val medicineList = mutableListOf<BuyMedicineData>()
 
                 do {
                     val name = cursor.getString(cursor.getColumnIndex(COLUMN_medicine_NAME))
@@ -53,7 +51,8 @@ class BuyModelImp(private val context: Context) : BuyModel {
 
                     medicineList.add(BuyMedicineData(name, price, unite))
                 } while (cursor.moveToNext())
-
+                callback.onSuccess(medicineList)
+            }else{
                 callback.onSuccess(medicineList)
             }
         } catch (e: Exception) {

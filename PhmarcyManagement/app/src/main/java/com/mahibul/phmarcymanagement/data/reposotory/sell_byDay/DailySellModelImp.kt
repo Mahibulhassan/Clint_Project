@@ -50,9 +50,9 @@ class DailySellModelImp(private val context: Context)  : DailySellModel {
                     null,
                     null
             )
+            val dailysell = mutableListOf<DailySell>()
             if (cursor?.moveToFirst() == true) {
 
-                val dailysell = mutableListOf<DailySell>()
 
                 do {
                     val id = cursor.getInt(0) // the index of _id is 0
@@ -63,6 +63,8 @@ class DailySellModelImp(private val context: Context)  : DailySellModel {
 
                 } while (cursor.moveToNext())
 
+                callback.onSuccess(dailysell)
+            }else{
                 callback.onSuccess(dailysell)
             }
         } catch (e: Exception) {

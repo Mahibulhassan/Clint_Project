@@ -22,10 +22,10 @@ class MedicinelistAdapter(
         holder.unitTextView.text=medicine.unit.toString()
 
         holder.btnDelete.setOnClickListener {
-            clicklistner.onDeleteButtonClicked(medicine.name)
+            clicklistner.onDeleteButtonClicked(medicine.name!!)
         }
         holder.btnEdit.setOnClickListener {
-            clicklistner.onEditButtonClicked(medicine.name,medicine.unit)
+            clicklistner.onEditButtonClicked(medicine.name!!, medicine.unit!!)
         }
     }
 

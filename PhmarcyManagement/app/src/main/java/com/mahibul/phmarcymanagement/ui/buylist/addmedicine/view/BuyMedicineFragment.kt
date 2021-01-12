@@ -55,7 +55,7 @@ class BuyMedicineFragment : DialogFragment(){
                 return@setOnClickListener
             }
 
-            val buymedicine = BuyMedicineData(name = name,price = price.toInt(),unit = unit.toInt())
+            val buymedicine = BuyMedicineData(name = name, price = price.toInt(), unit = unit.toInt())
 
             viewModel.addMedicine(buymedicine)
         }

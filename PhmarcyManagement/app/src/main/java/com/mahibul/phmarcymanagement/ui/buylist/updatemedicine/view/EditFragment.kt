@@ -60,7 +60,7 @@ class EditFragment : DialogFragment() {
                 return@setOnClickListener
             }
             val updateUnits = medicine_units?.plus(unit.toInt())
-            val updateMedicine = BuyMedicineData(name = name!!,price = price.toInt(),unit = updateUnits!!)
+            val updateMedicine = BuyMedicineData(name = name!!, price = price.toInt(), unit = updateUnits!!)
             viewModel.updateMedicine(updateMedicine)
         }
 
