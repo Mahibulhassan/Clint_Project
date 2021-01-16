@@ -18,7 +18,8 @@ class BuyMedicineViewModel(private val model : BuyModel): ViewModel() {
     fun getMedicineList(){
         model.getMedicineList(object : DataFetchCallback<MutableList<BuyMedicineData>> {
             override fun onSuccess(data: MutableList<BuyMedicineData>) {
-                medicineListLiveData.postValue(data)
+                val sortmedicine = data.sortedBy { data->data.name }
+                medicineListLiveData.postValue(sortmedicine as MutableList<BuyMedicineData>?)
             }
 
             override fun onError(throwable: Throwable) {

@@ -12,7 +12,8 @@ class SellViewModel(private val model : SellListModel): ViewModel() {
     fun getMedicineList(){
         model.getMedicineList(object : DataFetchCallback<MutableList<SellMedicine>> {
             override fun onSuccess(data: MutableList<SellMedicine>) {
-                medicineListLiveData.postValue(data)
+                val sortmedicine = data.sortedBy { data->data.name }
+                medicineListLiveData.postValue(sortmedicine as MutableList<SellMedicine>?)
             }
             override fun onError(throwable: Throwable) {
                 medicineListFailourLiveData.postValue(throwable.localizedMessage)
