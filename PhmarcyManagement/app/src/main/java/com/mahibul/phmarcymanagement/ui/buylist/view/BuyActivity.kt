@@ -48,7 +48,7 @@ class BuyActivity : BaseActivity(),DataChangeLIstner {
     }
 
     override fun setToolbar(): Toolbar {
-        toolbar.title = "Sore List"
+        toolbar.title = "Store List"
         return toolbar
     }
 

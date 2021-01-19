@@ -16,11 +16,13 @@
 
         <TextView
             android:id="@+id/dsell_nameTextView"
-            android:layout_width="240dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginLeft="5dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toEndOf="@+id/dsell_btnDelete"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Napa" />
@@ -65,8 +67,8 @@
             app:icon="@drawable/ic_baseline_delete_24"
             app:iconGravity="textEnd"
             app:iconTint="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dsell_btnEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
