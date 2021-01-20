@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B3CEE4"
+    android:padding="5dp"
+    tools:context=".ui.home.DeveloperDetails">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#6C78BA"
+        tools:ignore="MissingConstraints">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Name : Mahibul Hassan Emon"
+                android:textSize="20sp"
+                android:textColor="#FBFBFB"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#FBFBFB"
+                android:text="Phone Number : 01681690327"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dev_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_email"
+                android:layout_width="wrap_content"
+                android:textColor="#FBFBFB"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Email : mahibulhassan842@gmail.com"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dev_phone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#FBFBFB"
+                android:text="Facebook : https://www.facebook.com/mahibul.hassan.2"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dev_email" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#FBFBFB"
+                android:text="Linked in : https://www.linkedin.com/in/mahibul-hassan-0867a8179/"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dev_facebook" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dev_github"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#FBFBFB"
+                android:text="Github : https://github.com/Mahibulhassan"
+                android:textIsSelectable="true"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dev_linkedin" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

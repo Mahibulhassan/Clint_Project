@@ -62,10 +62,15 @@ class SellMedicineUpdate : DialogFragment() {
                 return@setOnClickListener
             }
             //Here Update medicine Units.........
-
-            val update_unites = medicine_units?.minus(sell_units.toInt())
-            val updateData = SellMedicine(name = name,price = price.toInt(),unit = update_unites!!)
-            viewModel.updateMedicine(updateData)
+            if(sell_units.toInt()> medicine_units!!){
+                Toast.makeText(requireContext(),"Not Enough Products",Toast.LENGTH_SHORT).show()
+                dismiss()
+                return@setOnClickListener
+            }else{
+                val update_unites = medicine_units?.minus(sell_units.toInt())
+                val updateData = SellMedicine(name = name,price = price.toInt(),unit = update_unites)
+                viewModel.updateMedicine(updateData)
+            }
             //Here  daily sell Implement
 
             val daily_price = sell_units.toInt()*price.toInt()
